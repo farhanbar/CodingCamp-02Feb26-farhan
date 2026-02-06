@@ -2,10 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <h1>hello world</h1>
+
+<body class="bg-slate-900 text-white">
+
+    <div class="w-full max-w-3xl bg-slate-800 rounded-xl p-6 shadow-lg">
+
+        <!-- Header -->
+        <header class="mb-6 text-center">
+            <h1 class="text-2xl font-bold">Todo List</h1>
+        </header>
+
+        <!-- Form -->
+        <section class="flex gap-2 mb-4">
+            <input
+                type="text"
+                id="todo-input"
+                placeholder="Add a todo..."
+                class="flex-1 p-2 rounded bg-slate-700 border border-slate-600 focus:outline-none"
+            />
+
+            <input
+                type="date"
+                id="todo-date"
+                class="p-2 rounded bg-slate-700 border border-slate-600 focus:outline-none"
+            />
+
+            <button
+                onclick="addTodo()"
+                class="px-4 rounded bg-indigo-600 hover:bg-indigo-700 font-semibold"
+            >
+                +
+            </button>
+        </section>
+
+        <!-- Action & Filter -->
+        <section class="flex justify-between mb-4">
+            <select
+                id="status-filter"
+                onchange="filterTodos()"
+                class="bg-slate-700 border border-slate-600 p-1 rounded text-sm"
+            >
+                <option value="all">ALL</option>
+                <option value="pending">PENDING</option>
+                <option value="done">DONE</option>
+            </select>
+
+            <button
+                onclick="deleteAllTodos()"
+                class="px-3 py-1 rounded bg-red-600 hover:bg-red-700 text-sm"
+            >
+                DELETE ALL
+            </button>
+        </section>
+
+        <!-- Todo Table -->
+        <section>
+            <table class="w-full text-sm">
+                <thead class="border-b border-slate-600 text-slate-400">
+                    <tr>
+                        <th class="text-left py-2">TASK</th>
+                        <th class="text-left py-2">DUE DATE</th>
+                        <th class="text-left py-2">STATUS</th>
+                        <th class="text-left py-2">ACTIONS</th>
+                    </tr>
+                </thead>
+
+                <tbody id="todo-list">
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-slate-500">
+                            No task found
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
